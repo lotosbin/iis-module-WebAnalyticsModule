@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configSchema>
+  <sectionSchema name="system.webServer/webAnalytics">
+    <attribute name="trackingEnabled" type="bool" defautlValue="false"></attribute>
+    <attribute name="trackingScript" type="string"  defautlValue="This is a default text"></attribute>
+    <attribute name="insertionPoint" type="enum" defaultValue="body">
+        <enum name="head" value="0" />
+        <enum name="body" value="1" /> 
+    </attribute>
+  </sectionSchema>
+</configSchema>

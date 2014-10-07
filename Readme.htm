@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Language" content="en-us" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Web Analytics Tracking Module Readme</title>
+</head>
+
+<body>
+
+<h1>Web Analytics Tracking Module for IIS 7.0 </h1>
+<h2>Readme</h2>
+<h3>Overview</h3>
+<p>The Web Analytics Tracking Module for IIS 7.0 is a managed module that 
+simplifies the task of adding web analytics tracking code to the page of any 
+kind of web site hosted on IIS 7.0. Instead of making changes to all web pages 
+of the web site, one can just configure the Web Analytics Tracking module to 
+insert tracking script to every html page that is served by IIS.</p>
+<h3>Installation</h3>
+<p>&nbsp;To start using the module, first compile it from this Visual Studio 
+solution. You can use VS 2005, VS2008 or Visual C# Express 2005 and 2008 to 
+compile the solution. You may also use the precompiled versions in the 
+bin\release folder. </p>
+<p>To install the module follow these steps:</p>
+<p>1. Copy the WebAnalyticsModule.dll to a bin folder within your web site or 
+application<br />
+2. Copy the WebAnalytics_schema.xml to &quot;%windir%\system32\inetsrv\config\schema&quot; 
+folder.<br />
+3. Add the following to the &quot;%windir%\system32\inetsrv\config\applicationhost.config&quot; 
+file:</p>
+<p>In the sectionGroup for &quot;system.webServer&quot;, add the section definition: 
+&lt;section name=&quot;webAnalytics&quot; overrideModeDefault=&quot;Allow&quot;&gt;</p>
+<p>4. Add module to a web site or an application by opening corresponding 
+web.config file and adding the following section to the &lt;system.webServer&gt; 
+element:</p>
+<p>&nbsp;&lt;modules&gt;<br />
+&lt;add name=&quot;WebAnalytics&quot; type=&quot;WebAnalyticsModule.WebAnalyticsHttpModule&quot; /&gt;<br />
+&lt;/modules&gt;</p>
+<p>5. Next, use the gacutil tool to put the module to the Global Assembly Cache 
+so that IIS Manager can use them:</p>
+<p>gacutil -if WebAnalyticsModule.dll</p>
+<p>6. Add the module to the IIS Manager configuration in the &quot;%windir%\system32\inetsrv\config\administration.config&quot; 
+file:</p>
+<p>In the &lt;moduleProviders&gt; collection, add the following entry:<br />
+<br />
+&nbsp;&lt;add name=&quot;WebAnalytics&quot; type=&quot;WebAnalyticsModule.WebAnalyticsProvider, 
+WebAnalyticsModule, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c6b7132bcfe43312&quot; 
+/&gt;<br />
+<br />
+And add the following line to the &lt;modules&gt; collection:<br />
+&lt;add name=&quot;WebAnalytics&quot; /&gt;</p>
+<p>7. Open the IIS Manager. You should see the &quot;Web Analytics Tracking&quot; icon in 
+the feature view for your web site or application.</p>
+
+</body>
+
+</html>
